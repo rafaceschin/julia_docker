@@ -1,0 +1,6 @@
+.npm
+.ipynb_checkpoints*
+.julia
+.local
+.wget-hsts
+julia*
