@@ -1,0 +1,20 @@
+My attempt at creating a Jupyter Lab environment for Julia
+
+Build the container:
+
+docker build -t julia_lab 
+(or any other name for the container)
+
+Initialize the notebook with: 
+docker run -it --user=$UID:$UID -p 8888:8888 -v $(pwd):/data <container_name>
+
+Where $(pwd) is whatever folder/workspace you want to access data/code in. The
+notebook only has access to this folder (and anything within). 
+
+I wrap it as a bashrc function: 
+function JULAB { docker run -it --user=$UID:$UID -p 8888:8888 -v $(pwd):/data <container_name>; }
+
+The notebook sets the mounted folder as its home directory, and all Julia
+compiled packages go there. So I like to have a main "Julia_WS" workspace
+folder where all my Julia scripts go to reduce redundancy and storage space
+for compiled packages.
